@@ -113,9 +113,9 @@ RUN set -Eeuxo pipefail \
     && printf "Installed Node.JS $(node -v)\n" \
     && dpkg-query -f '${binary:Package}\n' -W \
     && printf "Cleaning image\n" \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/* \
+    && sudo apt-get clean \
+    && sudo rm -rf /var/lib/apt/lists/* \
+    && sudo rm -rf /tmp/* \
     && printf "Cleaned up image\n"
 
 # > Install Powershell
@@ -127,8 +127,8 @@ RUN set -Eeuxo pipefail \
     && sudo add-apt-repository universe \
     && sudo apt-get install -y ${POWERSHELL_CHANNEL} \
     && sudo apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/* \
+    && sudo rm -rf /var/lib/apt/lists/* \
+    && sudo rm -rf /tmp/* \
     && printf "Cleaned up image\n"
 
 # > Don't run as root, generally not good idea

@@ -12,9 +12,9 @@ RUN set -Eeuxo pipefail \
     && sudo apt-get update \
     && sudo apt-get install -y dotnet-sdk-${DOTNET_VERSION} \
     && printf "Cleaning image\n" \
-    && apt-get clean \
-    && rm -rf /var/cache/* \
-    && rm -rf /var/log/* \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/* \
+    && sudo apt-get clean \
+    && sudo rm -rf /var/cache/* \
+    && sudo rm -rf /var/log/* \
+    && sudo rm -rf /var/lib/apt/lists/* \
+    && sudo rm -rf /tmp/* \
     && printf "Cleaned up image\n"
