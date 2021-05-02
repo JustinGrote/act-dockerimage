@@ -19,14 +19,15 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          path: act-pwsh.Dockerfile
           tags: |
             jgrote/act-pwsh:latest
             ghcr.io/justingrote/act-pwsh:latest
       - name: Build and publish act-pwsh-dotnet
         uses: docker/build-push-action@v2
         with:
-          context: ./pwshdotnet
           push: true
+          path: act-pwsh-dotnet.Dockerfile
           tags: |
             jgrote/act-pwsh-dotnet:latest
             ghcr.io/justingrote/act-pwsh-dotnet:latest

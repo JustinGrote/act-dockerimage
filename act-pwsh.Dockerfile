@@ -90,20 +90,20 @@ RUN set -Eeuxo pipefail \
     && printf "Cleaned up image\n"
 
 # > Create non-root user (requires sudo to be installed which is why this is after deps)
-RUN set -Eeuxo pipefail && \
-    printf "Creating non-root user ${RUNNER_USER}\n" && \
-    groupadd -g 1000 ${RUNNER_USER} && \
-    useradd -u 1000 -g ${RUNNER_USER} -d ${RUNNER_HOME} -G sudo -m -s /bin/bash ${RUNNER_USER} && \
-    sed -i /etc/sudoers -re 's/^%sudo.*/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' && \
-    sed -i /etc/sudoers -re 's/^root.*/root ALL=(ALL:ALL) NOPASSWD: ALL/g' && \
-    sed -i /etc/sudoers -re 's/^#includedir.*/## **Removed the include directive** ##"/g' && \
-    echo "${RUNNER_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-    printf "runner user: $(su - ${RUNNER_USER} -c id)\n" && \
-    printf "Created non-root user $(grep ${RUNNER_USER} /etc/passwd)\n"
+RUN set -Eeuxo pipefail \
+    && printf "Creating non-root user ${RUNNER_USER}\n" \
+    && groupadd -g 1000 ${RUNNER_USER} \
+    && useradd -u 1000 -g ${RUNNER_USER} -d ${RUNNER_HOME} -G sudo -m -s /bin/bash ${RUNNER_USER} \
+    && sed -i /etc/sudoers -re 's/^%sudo.*/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' \
+    && sed -i /etc/sudoers -re 's/^root.*/root ALL=(ALL:ALL) NOPASSWD: ALL/g' \
+    && sed -i /etc/sudoers -re 's/^#includedir.*/## **Removed the include directive** ##"/g' \
+    && echo "${RUNNER_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
+    && printf "runner user: $(su - ${RUNNER_USER} -c id)\n" \
+    && printf "Created non-root user $(grep ${RUNNER_USER} /etc/passwd)\n"
 
 # > Install Node.JS
 RUN set -Eeuxo pipefail \
-    && printf "Installing Node.JS\n" \
+    printf "Installing Node.JS\n" \
     && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
     && DISTRO="$(lsb_release -s -c)" \
     && echo "deb https://deb.nodesource.com/node_${NODE_VERSION}.x $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list \
