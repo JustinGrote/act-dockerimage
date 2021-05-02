@@ -19,7 +19,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          path: act-pwsh.Dockerfile
+          file: act-pwsh.Dockerfile
           tags: |
             jgrote/act-pwsh:latest
             ghcr.io/justingrote/act-pwsh:latest
@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          path: act-pwsh-dotnet.Dockerfile
+          file: act-pwsh-dotnet.Dockerfile
           tags: |
             jgrote/act-pwsh-dotnet:latest
             ghcr.io/justingrote/act-pwsh-dotnet:latest
