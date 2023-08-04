@@ -25,7 +25,7 @@ ENV AGENT_TOOLSDIRECTORY=${AGENT_TOOLSDIRECTORY}
 ENV RUNNER_TOOL_CACHE=${AGENT_TOOLSDIRECTORY}
 
 # > Node version
-ARG NODE_VERSION=12
+ARG NODE_VERSION=16
 
 # > Powershell channel (options are powershell, powershell-lts, and powershell-preview)
 ARG POWERSHELL_CHANNEL=powershell
