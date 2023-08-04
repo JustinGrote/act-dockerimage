@@ -1,7 +1,7 @@
 FROM ghcr.io/justingrote/act-pwsh
 
 #Dotnet version based on Ubuntu available packages. Possible are 2.1, 3.1, 5.0
-ARG DOTNET_VERSION=5.0
+ARG DOTNET_VERSION=7.0
 
 SHELL [ "/bin/bash", "-c" ]
 
